@@ -1,3 +1,4 @@
+import PropTypes  from 'prop-types';
 import { CustomLink, H3, Img, Li, Ul } from './ShowMovies.styled';
 import noImage from '../../image/no-image.png';
 
@@ -26,3 +27,15 @@ const ShowMovieList = ({ results, location }) => {
   );
 };
 export default ShowMovieList;
+
+ShowMovieList.propTypes={
+  results: PropTypes.arrayOf(PropTypes.shape({
+  id: PropTypes.number.isRequired,
+  poster_path: PropTypes.string,
+  title: PropTypes.string,
+  original_name: PropTypes.string,
+}),),
+location: PropTypes.shape({
+  pathname: PropTypes.string.isRequired,
+})
+}

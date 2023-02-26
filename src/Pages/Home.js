@@ -1,9 +1,8 @@
-import { lazy, Suspense, useEffect, useState } from 'react';
+import {  useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { ApiTmdbTrendMovie } from 'services/ApiTmdb/ApiTmdb';
-const ShowMovieList = lazy(() =>
-  import('../components/ShowMovieList/ShowMovieList')
-);
+import ShowMovieList from '../components/ShowMovieList/ShowMovieList';
+
 const Home = () => {
   const [results, setResults] = useState([]);
   const location = useLocation();
@@ -26,9 +25,8 @@ const Home = () => {
   }, []);
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <ShowMovieList results={results} location={location} />
-    </Suspense>
+         <ShowMovieList results={results} location={location} />
+   
   );
 };
 export default Home;
