@@ -10,18 +10,14 @@ const ShowMovieList = lazy(() =>
 const Movie = () => {
   const [searchMovie, setSearchMovie] = useState([]);
   const location = useLocation();
-  const [query, setQuery] = useState('');
   const [searchParams, setSearchParams] = useSearchParams();
 
   const submitQuery = q => {
-    setSearchParams({ q });
-    setQuery(q);
+    setSearchParams({ q });  
   };
 
   useEffect(() => {
-    if (searchParams.get('q')) {
-      setQuery(searchParams.get('q'));
-    }
+   const query = searchParams.get('q');     
     if (!query) return;
     const controller = new AbortController();
     async function getMovie() {
@@ -41,7 +37,7 @@ const Movie = () => {
     }
     getMovie();
     return controller.abort();
-  }, [query, searchParams]);
+  }, [searchParams]);
   return (
     <>
       <SearchBar submitQuery={submitQuery} />
